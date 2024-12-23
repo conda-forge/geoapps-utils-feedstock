@@ -1,3 +1,4 @@
+{% set python_min = '3.10.0' %}
 {% set name = "geoapps-utils" %}
 {% set version = "0.3.0" %}
 
@@ -12,16 +13,16 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.10.0,<3.11
+    - python {{ python_min }}
     - poetry-core >=1.0.0
     - setuptools
     - pip
   run:
-    - python >=3.10.0,<3.11
+    - python >={{ python_min }},<3.11
     - numpy >=1.23.5,<1.24.0
     - pydantic >=2.5.2,<2.6.0
     - scipy >=1.10.1,<1.11.0
@@ -41,6 +42,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://www.mirageoscience.com/mining-industry-software/python-integration/

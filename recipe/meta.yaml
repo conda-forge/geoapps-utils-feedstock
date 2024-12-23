@@ -1,6 +1,8 @@
 {% set python_min = '3.10.0' %}
 {% set name = "geoapps-utils" %}
 {% set version = "0.3.0" %}
+{% set python_min = "3.10" %}
+{% set python_max = "3.11" %}
 
 package:
   name: {{ name|lower }}
@@ -22,7 +24,7 @@ requirements:
     - setuptools
     - pip
   run:
-    - python >={{ python_min }},<3.11
+    - python >={{ python_min }},<{{ python_max }}
     - numpy >=1.23.5,<1.24.0
     - pydantic >=2.5.2,<2.6.0
     - scipy >=1.10.1,<1.11.0
@@ -41,6 +43,7 @@ test:
   commands:
     - pip check
   requires:
+    - python {{ python_min }}
     - pip
     - python {{ python_min }}
 

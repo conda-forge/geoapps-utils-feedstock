@@ -1,5 +1,5 @@
 {% set name = "geoapps-utils" %}
-{% set version = "0.3.0" %}
+{% set version = "0.4.0" %}
 {% set python_min = "3.10" %}
 {% set python_max = "3.11" %}
 
@@ -9,12 +9,12 @@ package:
 
 source:
   url: https://github.com/MiraGeoscience/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 4671fc21594f465fe3975ffba037a4a053e63d7038aca6fbcf5da0913532fcc2
+  sha256: d441ac5d566a5d11a5f32bbacc75c8a8d5f8a23749b0802a54a73c97405e2cf6
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
@@ -24,17 +24,12 @@ requirements:
     - pip
   run:
     - python >={{ python_min }},<{{ python_max }}
-    - numpy >=1.23.5,<1.24.0
+    - numpy >=1.26.0,<1.27.0
     - pydantic >=2.5.2,<2.6.0
-    - scipy >=1.10.1,<1.11.0
-    - geoh5py >=0.9.0,<0.10.0
+    - scipy >=1.14.0,<1.15.0
+    - geoh5py >=0.10.0rc1,<0.11.0a.dev
     - h5py >=3.2.1,<4.0.0
     - pillow >=10.3.0,<10.4.0
-  run_constrained:
-    - dash >=2.12.0,<3.0.0
-    - flask >=3.0.3,<4.0.0
-    - pyqtwebengine >=5.15.2,<5.16.0,<5.15.7
-    - pyside2 >=5.15.2,<5.16.0
 
 test:
   imports:
@@ -52,7 +47,7 @@ about:
     The geoapps-utils package provides utility functions used by 
     (geoapps)<https://github.com/MiraGeoscience/geoapps>.
   license: MIT
-  license_file: 
+  license_file:
     - LICENSE
   dev_url: https://github.com/MiraGeoscience/geoapps-utils
 

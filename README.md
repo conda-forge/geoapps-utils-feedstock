@@ -14,7 +14,6 @@ Development: https://github.com/MiraGeoscience/geoapps-utils
 The geoapps-utils package provides utility functions used by
 (geoapps)<https://github.com/MiraGeoscience/geoapps>.
 
-
 Current build status
 ====================
 

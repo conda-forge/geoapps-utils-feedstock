@@ -7,12 +7,12 @@ Home: https://www.mirageoscience.com/mining-industry-software/python-integration
 
 Package license: MIT
 
-Summary: Provides utility functions used by geoapps.
+Summary: Utility functions to build applications supported by Mira Geoscience.
 
 Development: https://github.com/MiraGeoscience/geoapps-utils
 
-The geoapps-utils package provides utility functions used by
-(geoapps)<https://github.com/MiraGeoscience/geoapps>.
+The geoapps-utils package provides utility functions used by Python applications
+supported by [Mira Geoscience](https://www.mirageoscience.com/mining-industry-software/geoscience-analyst/python-integration/).
 
 Current build status
 ====================
@@ -148,6 +148,5 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
-* [@SophieCurinier](https://github.com/SophieCurinier/)
-* [@sebhmg](https://github.com/sebhmg/)
+* [@conda-forge/geoh5py](https://github.com/orgs/conda-forge/teams/geoh5py/)
 

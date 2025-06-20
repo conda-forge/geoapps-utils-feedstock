@@ -2,8 +2,8 @@ schema_version: 1
 
 context:
   name: geoapps-utils
-  version: 0.4.0
-  python_min: 3.10
+  version: "0.5.0"
+  python_min: '3.10'
 
 package:
   name: ${{ name|lower }}
@@ -11,10 +11,10 @@ package:
 
 source:
   url: https://github.com/MiraGeoscience/${{ name }}/archive/v${{ version }}.tar.gz
-  sha256: d441ac5d566a5d11a5f32bbacc75c8a8d5f8a23749b0802a54a73c97405e2cf6
+  sha256: 39bfba2144fa1cc52bb7c0940e1ba229c2d94f6fd9896d636d05cde4e90a983d
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -27,11 +27,11 @@ requirements:
   run:
     - python >=${{ python_min }}
     # Mira packages
-    - geoh5py >=0.10.0,<0.11.dev
+    - geoh5py >=0.11.0, <0.12.dev
     # direct dependencies
-    - numpy >=1.26.0,<1.27.dev
-    - pydantic >=2.5.2,<3.0.dev
-    - scipy >=1.14.0,<1.15.dev
+    - numpy >=1.26.0, <1.27.dev
+    - pydantic >=2.5.2, <3.0.dev
+    - scipy >=1.14.0, <1.15.dev
 
 tests:
   - python:

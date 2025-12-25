@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: geoapps-utils
-  version: "0.5.0"
+  version: "0.6.0"
   python_min: '3.10'
 
 package:
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://github.com/MiraGeoscience/${{ name }}/archive/v${{ version }}.tar.gz
-  sha256: 39bfba2144fa1cc52bb7c0940e1ba229c2d94f6fd9896d636d05cde4e90a983d
+  sha256: eb21568d0da415b575ef6648a75c775b99a22adcf371e957df1b3167abc8811d
 
 build:
   number: 0

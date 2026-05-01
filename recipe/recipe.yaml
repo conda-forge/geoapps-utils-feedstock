@@ -4,6 +4,7 @@ context:
   name: geoapps-utils
   version: "0.6.0"
   python_min: '3.10'
+  module_name: ${{ name|lower|replace("-", "_") }}
 
 package:
   name: ${{ name|lower }}
@@ -20,25 +21,27 @@ build:
 
 requirements:
   host:
-    - pip
-    - poetry-core >=1.0.0
     - python ${{ python_min }}.*
+    - pip
+    - poetry-core >=1.8.0
+    - poetry-dynamic-versioning >=1.9, 1.*
     - setuptools
   run:
     - python >=${{ python_min }}
     # Mira packages
-    - geoh5py >=0.11.0, <0.12.dev
+    - geoh5py >=0.12.0, 0.12.*
     # direct dependencies
-    - numpy >=1.26.0, <1.27.dev
-    - pydantic >=2.5.2, <3.0.dev
-    - scipy >=1.14.0, <1.15.dev
+    - numpy 1.26*
+    - pydantic 2.11.*
+    - scipy 1.14.*
+    - matplotlib-base >=3.8.4, 3.8.*
+
 
 tests:
   - python:
-      python_version: ${{ python_min }}.*
       imports:
-        - geoapps_utils
-      pip_check: true
+        - ${{ module_name }}
+        - ${{ module_name }}._version
   - script:
       - pytest --ignore=tests/version_test.py
     requirements:
@@ -47,6 +50,9 @@ tests:
     files:
       source:
         - tests/
+  - package_contents:
+      files:
+        - site-packages/${{ module_name }}/_version.py
 
 about:
   summary: Utility functions to build applications supported by Mira Geoscience.

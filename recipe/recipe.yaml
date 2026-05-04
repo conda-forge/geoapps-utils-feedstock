@@ -2,8 +2,9 @@ schema_version: 1
 
 context:
   name: geoapps-utils
-  version: "0.5.0"
+  version: "0.6.0"
   python_min: '3.10'
+  module_name: ${{ name|lower|replace("-", "_") }}
 
 package:
   name: ${{ name|lower }}
@@ -11,34 +12,39 @@ package:
 
 source:
   url: https://github.com/MiraGeoscience/${{ name }}/archive/v${{ version }}.tar.gz
-  sha256: 39bfba2144fa1cc52bb7c0940e1ba229c2d94f6fd9896d636d05cde4e90a983d
+  sha256: eb21568d0da415b575ef6648a75c775b99a22adcf371e957df1b3167abc8811d
 
 build:
   number: 0
-  noarch: python
-  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  noarch: python  
+  script:
+    - export POETRY_DYNAMIC_VERSIONING_BYPASS=${{ version }}
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - pip
-    - poetry-core >=1.0.0
     - python ${{ python_min }}.*
+    - pip
+    - poetry-core >=1.8.0
+    - poetry-dynamic-versioning >=1.9, 1.*
     - setuptools
   run:
     - python >=${{ python_min }}
     # Mira packages
-    - geoh5py >=0.11.0, <0.12.dev
+    - geoh5py 0.12.*
     # direct dependencies
-    - numpy >=1.26.0, <1.27.dev
-    - pydantic >=2.5.2, <3.0.dev
-    - scipy >=1.14.0, <1.15.dev
+    - numpy 1.26*
+    - pydantic 2.11.*
+    - scipy 1.14.*
+    - matplotlib-base >=3.8.4, 3.8.*
+
 
 tests:
   - python:
       python_version: ${{ python_min }}.*
       imports:
-        - geoapps_utils
-      pip_check: true
+        - ${{ module_name }}
+        - ${{ module_name }}._version
   - script:
       - pytest --ignore=tests/version_test.py
     requirements:
@@ -47,6 +53,9 @@ tests:
     files:
       source:
         - tests/
+  - package_contents:
+      files:
+        - site-packages/${{ module_name }}/_version.py
 
 about:
   summary: Utility functions to build applications supported by Mira Geoscience.

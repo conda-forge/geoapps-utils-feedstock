@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: geoapps-utils
-  version: "0.6.0"
+  version: "0.7.0"
   python_min: '3.10'
   module_name: ${{ name|lower|replace("-", "_") }}
 
@@ -12,11 +12,11 @@ package:
 
 source:
   url: https://github.com/MiraGeoscience/${{ name }}/archive/v${{ version }}.tar.gz
-  sha256: eb21568d0da415b575ef6648a75c775b99a22adcf371e957df1b3167abc8811d
+  sha256: 10261592af794845bde9b52c2ef50de9105d201a2b6957f8ea0633a3fbb1c6d5
 
 build:
   number: 0
-  noarch: python  
+  noarch: python
   script:
     - export POETRY_DYNAMIC_VERSIONING_BYPASS=${{ version }}
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
